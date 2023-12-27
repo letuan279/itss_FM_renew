@@ -14,6 +14,8 @@ router.post('/login', userController.login);
 // group
 router.get('/group/:idUser', groupController.getAll);
 router.post('/group/add', groupController.add);
+router.get('/group/market-share/:idGroup', groupController.getShareMarket);
+router.post('/group/market-share/add', groupController.addShare);
 
 // member
 router.post('/member/add', memberController.add)
@@ -27,5 +29,6 @@ router.get('/food/delete/:idFood', foodController.delete);
 // market
 router.get('/market/:idUser', marketController.getAll);
 router.post('/market/add', marketController.add);
+router.post('/market/buy', marketController.buy);
 
 module.exports = router

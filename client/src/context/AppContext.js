@@ -10,6 +10,7 @@ const AppContextProvider = ({ children }) => {
     const [group, setGroup] = useState([])
     const [monDo, setMonDo] = useState([])
     const [diCho, setDiCho] = useState([])
+    const [diChoShare, setDiChoShare] = useState([])
 
     const history = useHistory();
 
@@ -86,6 +87,17 @@ const AppContextProvider = ({ children }) => {
             const res = await fetch(`${BACK_END_URL}market/${userId}`)
             const data = await res.json();
             setDiCho(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
+    const fetchDiChoShare = async (groupId) => {
+        try {
+            const res = await fetch(`${BACK_END_URL}group/market-share/${groupId}`)
+            const data = await res.json();
+            setDiChoShare(data.data)
         } catch (error) {
             console.log(error.message);
             message.error(error.message)

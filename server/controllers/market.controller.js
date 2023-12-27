@@ -73,5 +73,84 @@ module.exports = {
             );
         })
         return res.json({ success: true, message: "Add thành công" })
+    },
+
+    buy: async (req, res) => {
+        const { idUserBought, dateBought, idMarket, quantity, expire, state } = req.body
+        try {
+            const marketQuery = `
+                                    UPDATE market
+                                    SET idUserBought = ?, dateBought = ?, state = 1
+                                    WHERE id = ?;
+                                `;
+
+            const selectQuery = `
+                SELECT idUser FROM market WHERE id = ?;
+            `;
+
+            const market = await new Promise((resolve, reject) => {
+                connection.beginTransaction((err) => {
+                    if (err) {
+                        console.error(`Error: `, err);
+                        reject(err);
+                    }
+                    connection.query(
+                        marketQuery,
+                        [idUserBought, dateBought, idMarket],
+                        (error, results, fields) => {
+                            if (error) {
+                                console.error(`Error: `, error);
+                                connection.rollback(() => {
+                                    reject(error);
+                                });
+                            } else {
+                                connection.query(selectQuery, [idMarket], (err, result, fields) => {
+                                    if (err) {
+                                        console.error(`Error: `, err);
+                                        connection.rollback(() => {
+                                            reject(err);
+                                        });
+                                    } else {
+                                        connection.commit((err) => {
+                                            if (err) {
+                                                console.error(`Error: `, err);
+                                                connection.rollback(() => {
+                                                    reject(err);
+                                                });
+                                            }
+                                            resolve([results, result]);
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    );
+                });
+            });
+
+            const storeQuery = `
+                INSERT INTO store (idUser, idMarket, expire, quantity, state)
+                VALUES (?, ?, ?, ?, ?)
+            `;
+            const store = await new Promise((resolve, reject) => {
+                connection.query(
+                    storeQuery,
+                    [market[1][0].idUser, idMarket, expire, quantity, state],
+                    (error, results, fields) => {
+                        if (error) {
+                            console.error(`Error: `, error);
+                            reject(error);
+                        } else {
+                            resolve(results);
+                        }
+                    }
+                );
+            });
+
+            return res.json({ success: true, message: "Add thành công" })
+        } catch (error) {
+            console.error('Error: ', error.message);
+            return res.json({ success: false })
+        }
     }
 }
