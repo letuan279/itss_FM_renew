@@ -11,6 +11,7 @@ import NhomChiTiet from "./components/nhom/NhomChiTiet";
 import MonDo from "./components/mondo/MonDo";
 import CongThuc from "./components/congthuc/CongThuc";
 import DiCho from "./components/dicho/DiCho";
+import NauAn from "./components/nauan/NauAn";
 import Kho from "./components/kho/Kho";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/mon-do" exact component={MonDo} />
             <Route path="/cong-thuc" exact component={CongThuc} />
             <Route path="/di-cho" exact component={DiCho} />
+            <Route path="/nau-an" exact component={NauAn} />
             <Route path="/kho" exact component={Kho} />
             <Redirect from="*" to="/nhom" />
           </Main>

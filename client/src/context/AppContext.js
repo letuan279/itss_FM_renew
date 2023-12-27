@@ -13,6 +13,7 @@ const AppContextProvider = ({ children }) => {
     const [diChoShare, setDiChoShare] = useState([])
     const [congThuc, setCongThuc] = useState([])
     const [kho, setKho] = useState([])
+    const [nauAn, setNauAn] = useState([])
 
     const history = useHistory();
 
@@ -131,6 +132,17 @@ const AppContextProvider = ({ children }) => {
             const res = await fetch(`${BACK_END_URL}store/${userId}`)
             const data = await res.json();
             setKho(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
+    const fetchNauAn = async (userId) => {
+        try {
+            const res = await fetch(`${BACK_END_URL}cook/${userId}`)
+            const data = await res.json();
+            setNauAn(data.data)
         } catch (error) {
             console.log(error.message);
             message.error(error.message)
