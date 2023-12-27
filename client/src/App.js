@@ -9,6 +9,7 @@ import AppContextProvider from "./context/AppContext";
 import Nhom from "./components/nhom/Nhom";
 import NhomChiTiet from "./components/nhom/NhomChiTiet";
 import MonDo from "./components/mondo/MonDo";
+import DiCho from "./components/dicho/DiCho";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/nhom" exact component={Nhom} />
             <Route path="/nhom/:id" exact component={NhomChiTiet} />
             <Route path="/mon-do" exact component={MonDo} />
+            <Route path="/di-cho" exact component={DiCho} />
           </Main>
         </Switch>
       </div>
