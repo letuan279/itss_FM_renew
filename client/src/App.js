@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
@@ -7,6 +7,8 @@ import "./assets/styles/responsive.css";
 import AppContextProvider from "./context/AppContext";
 
 import Nhom from "./components/nhom/Nhom";
+import NhomChiTiet from "./components/nhom/NhomChiTiet";
+import MonDo from "./components/mondo/MonDo";
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/dang-nhap" exact component={SignIn} />
-          <Route path="/nhom" exact component={Nhom} />
           <Main>
+            <Route path="/nhom" exact component={Nhom} />
+            <Route path="/nhom/:id" exact component={NhomChiTiet} />
+            <Route path="/mon-do" exact component={MonDo} />
           </Main>
         </Switch>
       </div>

@@ -8,6 +8,7 @@ const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [group, setGroup] = useState([])
+    const [monDo, setMonDo] = useState([])
 
     const history = useHistory();
 
@@ -58,6 +59,27 @@ const AppContextProvider = ({ children }) => {
         }
     }
 
+    const fetchMonDo = async (userId) => {
+        try {
+            const options = {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId })
+            }
+            const res = await fetch(`${BACK_END_URL}food`, options)
+            const data = await res.json();
+            setMonDo(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
     return (
         <AppContext.Provider value={
             {
@@ -66,6 +88,21 @@ const AppContextProvider = ({ children }) => {
                 handleLogin,
                 group,
                 fetchNhom,
+                fetchMonDo,
+                monDo,
+                setMonDo,
+                fetchCongThuc,
+                congThuc,
+                fetchDiCho,
+                diCho,
+                fetchKho,
+                kho,
+                fetchNauAn,
+                nauAn,
+                fetchDiChoShare,
+                diChoShare,
+                fetchUserNormal,
+                userNormal
             }
         }>
             {children}
