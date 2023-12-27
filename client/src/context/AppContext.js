@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import { message } from 'antd'
 import { BACK_END_URL } from "./const";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [group, setGroup] = useState([])
 
     const history = useHistory();
 
@@ -43,12 +44,28 @@ const AppContextProvider = ({ children }) => {
         }
     }
 
+    const fetchNhom = async () => {
+        try {
+            const res = await fetch(`${BACK_END_URL}group/${user[0].id}`)
+            const data = await res.json();
+            setGroup(data.data.filter(item => {
+                const itemMemberIds = item.members.map(i => i.id)
+                return itemMemberIds.includes(user[0].id)
+            }));
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
     return (
         <AppContext.Provider value={
             {
                 user,
                 setUser,
-                handleLogin
+                handleLogin,
+                group,
+                fetchNhom,
             }
         }>
             {children}

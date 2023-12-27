@@ -6,12 +6,15 @@ import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import AppContextProvider from "./context/AppContext";
 
+import Nhom from "./components/nhom/Nhom";
+
 function App() {
   return (
     <AppContextProvider>
       <div className="App">
         <Switch>
           <Route path="/dang-nhap" exact component={SignIn} />
+          <Route path="/nhom" exact component={Nhom} />
           <Main>
           </Main>
         </Switch>
