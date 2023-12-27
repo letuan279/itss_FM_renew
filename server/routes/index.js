@@ -6,6 +6,7 @@ const foodController = require('../controllers/food.controller');
 const marketController = require('../controllers/market.controller');
 const recipeController = require('../controllers/recipe.controller');
 const storeController = require('../controllers/store.controller');
+const cookController = require('../controllers/cook.controller');
 
 const router = express.Router();
 
@@ -40,6 +41,11 @@ router.post('/recipe/add', recipeController.add)
 // store
 router.get('/store/:idUser', storeController.getAll)
 router.get('/store/delete/:id', storeController.delete)
+
+// cook
+router.get('/cook/:idUser', cookController.getAll)
+router.post('/cook/add', cookController.add)
+router.get('/cook/delete/:id', cookController.delete)
 
 
 module.exports = router
