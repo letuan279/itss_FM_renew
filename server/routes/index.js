@@ -12,4 +12,8 @@ router.post('/login', userController.login);
 router.get('/group/:idUser', groupController.getAll);
 router.post('/group/add', groupController.add);
 
+// member
+router.post('/member/add', memberController.add)
+router.post('/member/delete', memberController.delete)
+
 module.exports = router
