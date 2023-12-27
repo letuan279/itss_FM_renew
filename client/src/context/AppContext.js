@@ -11,6 +11,7 @@ const AppContextProvider = ({ children }) => {
     const [monDo, setMonDo] = useState([])
     const [diCho, setDiCho] = useState([])
     const [diChoShare, setDiChoShare] = useState([])
+    const [congThuc, setCongThuc] = useState([])
 
     const history = useHistory();
 
@@ -98,6 +99,27 @@ const AppContextProvider = ({ children }) => {
             const res = await fetch(`${BACK_END_URL}group/market-share/${groupId}`)
             const data = await res.json();
             setDiChoShare(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
+    const fetchCongThuc = async (userId) => {
+        try {
+            const options = {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId })
+            }
+            const res = await fetch(`${BACK_END_URL}recipe`, options)
+            const data = await res.json();
+            setCongThuc(data.data)
         } catch (error) {
             console.log(error.message);
             message.error(error.message)
