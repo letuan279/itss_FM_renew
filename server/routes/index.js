@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('../controllers/user.controller');
 const groupController = require('../controllers/group.controller');
 const memberController = require('../controllers/member.controller');
+const foodController = require('../controllers/food.controller')
 const router = express.Router();
 
 // user
@@ -15,5 +16,10 @@ router.post('/group/add', groupController.add);
 // member
 router.post('/member/add', memberController.add)
 router.post('/member/delete', memberController.delete)
+
+// food
+router.post('/food', foodController.getAll);
+router.post('/food/add', foodController.add);
+router.get('/food/delete/:idFood', foodController.delete);
 
 module.exports = router
