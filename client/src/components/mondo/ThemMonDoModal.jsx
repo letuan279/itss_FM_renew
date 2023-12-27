@@ -83,7 +83,7 @@ const ThemMonDoModal = (props) => {
     const handleAddSubmit = async (values) => {
         const fetchData = async () => {
         try {
-            values.idUser = user[0].id
+            values.idUser = user.id
             const res = await fetch(`${BACK_END_URL}food/add`, {
                 method: "POST",
                 mode: "cors",
@@ -96,7 +96,7 @@ const ThemMonDoModal = (props) => {
             });
             const data = await res.json();
             if(data.success === true){
-                await fetchMonDo(user[0].id)
+                await fetchMonDo(user.id)
                 message.success('Tạo thành công!')
                 setEditModalVisible(false);
             }

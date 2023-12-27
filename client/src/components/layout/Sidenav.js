@@ -173,7 +173,7 @@ function Sidenav({ color }) {
                         <span className="label">Món đồ</span>
                     </NavLink>
                 </Menu.Item>
-                {user && user[0].role === 1 && <Menu.Item key="7">
+                {user && user.role === 1 && <Menu.Item key="7">
                     <NavLink to="/quan-tri">
                         <span
                             className="icon"

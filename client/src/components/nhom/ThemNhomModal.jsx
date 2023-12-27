@@ -54,7 +54,7 @@ const ThemNhomModal = (props) => {
     const handleAddSubmit = async (values) => {
         const fetchData = async () => {
         try {
-            values.idLeader = user[0].id;
+            values.idLeader = user.id;
             console.log(values);
             const res = await fetch(`${BACK_END_URL}group/add`, {
                 method: "POST",

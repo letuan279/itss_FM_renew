@@ -41,7 +41,7 @@ const NhomChiTiet = (props) => {
                                     </Popconfirm>
                                 </div>)
                     const idLeader = members.filter(item => item.isLeader)[0]?.id
-                    if(idLeader === user[0]?.id && record.id !== idLeader) return ans
+                    if(idLeader === user?.id && record.id !== idLeader) return ans
                     else return <></>
                 },
           }
@@ -118,7 +118,7 @@ const NhomChiTiet = (props) => {
             key: 'userBought',
             render: item => {
                 if(item.id === null) return <Tag color='default'>Chưa có</Tag>
-                if(item.id === user[0]?.id) return "Tôi"
+                if(item.id === user?.id) return "Tôi"
                 return item.username
             }
         },

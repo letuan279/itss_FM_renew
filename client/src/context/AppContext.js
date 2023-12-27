@@ -42,7 +42,7 @@ const AppContextProvider = ({ children }) => {
                 message.warning('Không tồn tại tài khoản')
                 return
             }
-            setUser(data.data);
+            setUser(data.data[0]);
             message.success('Đăng nhập thành công')
             history.push('/nhom')
         } catch (error) {
@@ -53,11 +53,11 @@ const AppContextProvider = ({ children }) => {
 
     const fetchNhom = async () => {
         try {
-            const res = await fetch(`${BACK_END_URL}group/${user[0].id}`)
+            const res = await fetch(`${BACK_END_URL}group/${user.id}`)
             const data = await res.json();
             setGroup(data.data.filter(item => {
                 const itemMemberIds = item.members.map(i => i.id)
-                return itemMemberIds.includes(user[0].id)
+                return itemMemberIds.includes(user.id)
             }));
         } catch (error) {
             console.log(error.message);

@@ -27,7 +27,7 @@ const { TextArea } = Input;
 const CongThuc = () => {
     const { user, congThuc, fetchCongThuc, monDo } = useData();
     useEffect(() => {
-        fetchCongThuc(user[0]?.id)
+        fetchCongThuc(user?.id)
     }, [])
     const monAn = monDo.filter(item => item.type === 1)
     const thucPham = monDo.filter(item => item.type === 0)
@@ -48,7 +48,7 @@ const CongThuc = () => {
         try {
             values.name = formValues.name;
             values.desc = formValues.desc;
-            values.idUser = user[0].id;
+            values.idUser = user.id;
             values.idFood = formValues.food;
             values.materials = materialValues;
             const res = await fetch(`${BACK_END_URL}recipe/add`, {
@@ -63,7 +63,7 @@ const CongThuc = () => {
             });
             const data = await res.json();
             if(data.success === true){
-                await fetchCongThuc(user[0].id)
+                await fetchCongThuc(user.id)
                 message.success('Tạo thành công!')
                 setModalVisible(false);
 

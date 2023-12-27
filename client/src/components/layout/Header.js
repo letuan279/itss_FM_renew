@@ -209,13 +209,13 @@ function Header({
                     </Dropdown>
                     <div className="btn-sign-in">
                         {profile}
-                        <span>{user && user[0]?.name}</span>
+                        <span>{user && user?.name}</span>
                     </div>
 
-                    {user && user[0]?.role === 1 &&
+                    {user && user?.role === 1 &&
                         <Tag color="green" >Admin</Tag>
                     }
-                    {user && user[0]?.role === 0 &&
+                    {user && user?.role === 0 &&
                         <Tag color="orange" >Dân thường</Tag>
                     }
                 </Col>

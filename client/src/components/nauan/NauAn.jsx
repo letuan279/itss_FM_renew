@@ -8,9 +8,9 @@ const NauAn = () => {
     const { user, nauAn, congThuc, fetchNauAn, fetchCongThuc, fetchKho, kho } = useData()
 
     useEffect(() => {
-        fetchNauAn(user[0].id)
-        fetchCongThuc(user[0].id)
-        fetchKho(user[0].id)
+        fetchNauAn(user.id)
+        fetchCongThuc(user.id)
+        fetchKho(user.id)
     }, [])
 
     const columns = [
@@ -84,7 +84,7 @@ const NauAn = () => {
             const res = await fetch(`${BACK_END_URL}cook/delete/${id}`)
             const data = await res.json()
             if(data.success === true){
-                fetchNauAn(user[0].id)
+                fetchNauAn(user.id)
                 message.success('Xóa thành công')
             }
         } catch (error) {

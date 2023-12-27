@@ -9,7 +9,7 @@ const MonDo = () => {
     const { user, monDo, fetchMonDo } = useData()
 
     useEffect(() => {
-        fetchMonDo(user[0].id)
+        fetchMonDo(user.id)
     }, [])
 
     const columns = [
@@ -58,7 +58,7 @@ const MonDo = () => {
             const res = await fetch(`${BACK_END_URL}food/delete/${id}`)
             const data = await res.json()
             if(data.success === true){
-                fetchMonDo(user[0].id)
+                fetchMonDo(user.id)
                 message.success('Xóa thành công')
             }
         } catch (error) {

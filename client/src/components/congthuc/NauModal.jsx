@@ -73,7 +73,7 @@ const NauModal = (props) => {
         try {
             values.date = values.date.format("YYYY-MM-DD")
             values.idRecipe = idRecipe
-            values.idUser = user[0].id
+            values.idUser = user.id
             const res = await fetch(`${BACK_END_URL}cook/add`, {
                 method: "POST",
                 mode: "cors",
@@ -86,7 +86,7 @@ const NauModal = (props) => {
             });
             const data = await res.json();
             if(data.success === true){
-                await fetchNauAn(user[0].id)
+                await fetchNauAn(user.id)
                 message.success('Tạo thành công!')
                 setEditModalVisible(false);
             }

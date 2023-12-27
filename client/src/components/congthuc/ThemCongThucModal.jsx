@@ -104,7 +104,7 @@ const ThemCongThucModal = (props) => {
     const handleAddSubmit = async (values) => {
         const fetchData = async () => {
         try {
-            values.idUser = user[0].id
+            values.idUser = user.id
             values.dateToBuy = values.dateToBuy.format("YYYY-MM-DD")
             const res = await fetch(`${BACK_END_URL}market/add`, {
                 method: "POST",
@@ -118,7 +118,7 @@ const ThemCongThucModal = (props) => {
             });
             const data = await res.json();
             if(data.success === true){
-                await fetchDiCho(user[0].id)
+                await fetchDiCho(user.id)
                 message.success('Tạo thành công!')
                 setEditModalVisible(false);
             }

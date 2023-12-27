@@ -43,7 +43,7 @@ const Nhom = () => {
       dataIndex: "members",
       key: "members",
       render: (item) => {
-        const userId = user[0].id;
+        const userId = user.id;
         const result = item.filter((i) => i.id === userId && i.isLeader === 1);
 
         if (result.length === 1) return <Tag color="green">Trưởng nhóm</Tag>;

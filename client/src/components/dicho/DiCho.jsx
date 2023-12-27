@@ -22,8 +22,8 @@ const DiCho = () => {
   const { user, diCho, fetchDiCho, fetchMonDo } = useData();
 
   useEffect(() => {
-    fetchDiCho(user[0].id);
-    fetchMonDo(user[0].id);
+    fetchDiCho(user.id);
+    fetchMonDo(user.id);
   }, []);
 
   const columns = [
@@ -87,7 +87,7 @@ const DiCho = () => {
       key: "userBought",
       render: (item) => {
         if (item.id === null) return <Tag color="default">Chưa có</Tag>;
-        if (item.id === user[0]?.id) return "Tôi";
+        if (item.id === user?.id) return "Tôi";
         return item.username;
       },
     },

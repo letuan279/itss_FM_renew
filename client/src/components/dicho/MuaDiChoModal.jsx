@@ -87,7 +87,7 @@ const MuaDiChoModal = (props) => {
         try {
             values.dateBought = values.dateBought.format("YYYY-MM-DD")
             values.expire = values.expire.format("YYYY-MM-DD")
-            values.idUserBought = user[0].id
+            values.idUserBought = user.id
             values.idMarket = selectedMarket
             const res = await fetch(`${BACK_END_URL}market/buy`, {
                 method: "POST",
@@ -101,7 +101,7 @@ const MuaDiChoModal = (props) => {
             });
             const data = await res.json();
             if(data.success === true){
-                await fetchDiCho(user[0].id)
+                await fetchDiCho(user.id)
                 message.success('Mua thành công!')
                 setEditModalVisible(false);
             }

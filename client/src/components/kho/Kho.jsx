@@ -7,7 +7,7 @@ import { BACK_END_URL } from '../../context/const';
 const Kho = () => {
     const {kho, user, fetchKho} = useData();
     useEffect(() => {
-        fetchKho(user[0].id)
+        fetchKho(user.id)
     }, [])
 
     const columns = [
@@ -72,7 +72,7 @@ const Kho = () => {
             const res = await fetch(`${BACK_END_URL}store/delete/${id}`)
             const data = await res.json()
             if(data.success === true){
-                fetchKho(user[0].id)
+                fetchKho(user.id)
                 message.success('Xóa thành công')
             }
         } catch (error) {
